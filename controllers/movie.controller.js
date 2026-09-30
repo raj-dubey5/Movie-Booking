@@ -23,7 +23,7 @@ const createMovie = async (req, res) => {
             message: "Something went wrong"
         });
     }
-}
+};
 
 const getMovie = async (req, res) => {
     try {
@@ -38,7 +38,7 @@ const getMovie = async (req, res) => {
         console.log(err)
         return res.status(500).json(errorResponseBody)
     }
-}
+};
 
 const deleteMovie = async (req, res) => {
     try {
@@ -51,13 +51,13 @@ const deleteMovie = async (req, res) => {
         console.log(err);
         return res.status(500).json(errorResponseBody)
     }
-}
+};
 
 const updateMovie = async (req, res) => {
     try {
         const response = await movieService.updateMovie(req.params.id, req.body);
-        if(response.err){
-            errorResponseBody.err=response.err;
+        if (response.err) {
+            errorResponseBody.err = response.err;
             return res.status(response.code).json(errorResponseBody)
         }
         successResponseBody.data = response;
@@ -67,11 +67,29 @@ const updateMovie = async (req, res) => {
         errorResponseBody.err = err;
         return res.status(500).json(errorResponseBody);
     }
+};
+
+const getMovies = async (req, res) => {
+    try {
+        const response = await movieService.fetchMovies(req.query);
+        if (response.err) {
+            errorResponseBody.err = response.err;
+            return res.status(response.code).json(errorResponseBody);
+        }
+        successResponseBody.data = response;
+        return res.status(200).json(successResponseBody);
+    } catch (error) {
+        console.log(error);
+        errorResponseBody.err = error;
+        return res.status(500).json(errorResponseBody);
+    }
 }
+
 
 module.exports = {
     createMovie,
     deleteMovie,
     getMovie,
-    updateMovie
+    updateMovie,
+    getMovies
 }
