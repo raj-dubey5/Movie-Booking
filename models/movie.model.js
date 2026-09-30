@@ -7,7 +7,8 @@ const movieSchema = new mongoose.Schema({
     },
     description: {
         type: String,
-        required: true
+        required: true,
+        minLength: 5
     },
     casts: {
         type: [String],
@@ -30,7 +31,7 @@ const movieSchema = new mongoose.Schema({
         type: String,
         required: true
     },
-    releaseDate: {
+    releaseStatus: {
         type: String,
         required: true,
         default: "RELEASED"
