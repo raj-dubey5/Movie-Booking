@@ -1,5 +1,4 @@
 const Movie = require('../models/movie.model');
-const { errorResponseBody } = require('../utils/responsebody');
 
 const createMovie = async (data) => {
     try {
