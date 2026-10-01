@@ -31,7 +31,7 @@ const deleteTheatre = async (id) => {
         console.log(error);
         throw error;
     }
-}
+};
 
 const getTheatre = async (id) => {
     try {
@@ -47,10 +47,21 @@ const getTheatre = async (id) => {
         console.log(error);
         throw error;
     }
+};
+
+const getAllTheatres = async () => {
+    try {
+        const response = await Theatre.find({});
+        return response;
+    } catch (error) {
+        console.log(error);
+        throw error;
+    }
 }
 
 module.exports = {
     createTheatre,
     deleteTheatre,
-    getTheatre
+    getTheatre,
+    getAllTheatres
 }
